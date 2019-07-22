@@ -10,15 +10,15 @@ const ShoppingCart = () => {
 	const context = useContext(CartContext);
 
 	const getCartTotal = () => {
-		return context.reduce((acc, value) => {
+		return context.cart.reduce((acc, value) => {
 			return acc + value.price;
 		}, 0).toFixed(2);
 	};
 
 	return (
 		<div className="shopping-cart">
-			{context.map(item => (
-				<Item key={item.id} {...item} />
+			{context.cart.map(item => (
+				<Item key={item.id} remove={context.removeItem} {...item} />
 			))}
 
 			<div className="shopping-cart__checkout">
